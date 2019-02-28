@@ -1,0 +1,303 @@
+\chapter{Buffer protocols}
+
+%===================================================================
+\section{The clef protocol}
+
+%-------------------------------------------------------------------
+\subsection{Description}
+
+A \emph{clef}\index{clef} is an object associated with a \emph{staff},
+indicating where (on which staff step) notes are to be rendered on the
+staff.  The \emph{name}\index{clef!name of|}\index{name!of a clef|} of
+the clef is one of \lispobj{:treble}, \lispobj{:bass}, \lispobj{:c},
+and \lispobj{:percussion}.  The \emph{line number}\index{clef!line
+  number of|}\index{line number!of a clef|} of the clef indicates the
+staff line on which the clef should be rendered. 
+
+The name of the clef (except \lispobj{:percussion}) corresponds to a
+certain pitch.  Notes of that pitch will be rendered on the line of
+the clef.  Each different type of clef (as indicated by the name) has
+a line by default which is assigned to the clef at creation if no
+argument is given
+
+Here is a table of pitches and default line numbers of the different
+clefs:
+
+\begin{tabular}{|l|l|l|}
+\hline
+Name                   & Pitch        & Default line \\
+\hline\hline
+\lispobj{:treble}      & G (octave??) & 2 \\
+\lispobj{:bass}        & F (octave??) & 6 \\
+\lispobj{:c}           & C (octave??) & 4 \\
+\lispobj{:percussion}  & -            & 3 \\
+\hline
+\end{tabular}
+
+%-------------------------------------------------------------------
+\subsection{Protocol classes and functions}
+
+\Defclass {clef}
+
+\Defun {make-clef} {name \optional (lineno \cl{nil})}
+
+Create a clef with the name and line numbers given.  Line numbers
+default to the values in the table above. 
+
+\Defgeneric {name} {clef}
+
+Return the name of the clef given as argument.
+
+\Defgeneric {lineno} {clef}
+
+Return the line number of the clef given as argument. 
+
+%-------------------------------------------------------------------
+\subsection{External representation}
+
+A clef is printed (by \lispobj{print-object}) like this in version 3
+of the external representation :
+
+\texttt{[K :name \textit{name} :lineno \textit{lineno} ]}
+
+The reader accepts this syntax, except that the slots can come in any
+arbitrary order. 
+
+%===================================================================
+\section{The staff protocol}
+
+%-------------------------------------------------------------------
+\subsection{Description}
+
+%-------------------------------------------------------------------
+\subsection{Protocol classes and functions}
+
+\Defclass {staff}
+
+The protocol class for all staves. 
+
+\Defclass {fiveline-staff}
+
+This class is a subclass of \lispobj{staff}, and is used to represent an
+ordinary five-line staff for displaying notes. 
+
+\Defgeneric {name} {staff}
+
+Return the name of the staff.  With \lispobj{setf}, change the name of
+the staff.
+
+\Defun {make-fiveline-staff} {\key name clef keysig}
+
+Make a five-line staff with the name, the clef, and the key signature
+indicated.  The default value of the \lispobj{name} argument is the
+string \lispobj{"default staff"}.  The default value for the
+\lispobj{clef} argument is a newly created treble clef.  The default
+argument for the key signature is a key signature with no
+alterations. 
+
+\Defgeneric {clef} {fiveline-staff}
+
+Return the clef of the staff.  With \lispobj{setf}, change the clef of
+the staff.
+
+\Defgeneric {keysig} {fiveline-staff}
+
+Return the key signature of the staff.  With \lispobj{setf}, change
+the key signature of the staff. 
+
+\Defclass {lyrics-staff}
+
+This class is a subclass of \lispobj{staff}, and is used to represent a
+staff for displaying lyrics. 
+
+\Defun {make-lyrics-staff} (\key name)
+
+Make a lyrics staff with the name indicated.  The default value of the
+\lispobj{name} argument is the string \lispobj{"default staff"}.
+
+%-------------------------------------------------------------------
+\subsection{External representation}
+
+A fiveline staff is printed (by \lispobj{print-object}) like this in
+version 3 of the external representation:
+
+\texttt{[= :name \textit{name} :clef \textit{clef} :keysig \textit{keysig} ]}
+
+The reader accepts this syntax, except that the slots can come in any
+arbitrary order. 
+
+A lyrics staff is printed (by \lispobj{print-object}) like this in
+version 3 of the external representation:
+
+\texttt{[L :name \textit{name} ]}
+
+%===================================================================
+\section{The keysig protocol}
+
+There is no keysig protocol yet.  But I would like to create one.  A
+keysig would be a read-only object.  
+
+%===================================================================
+\section{The note protocol}
+
+%-------------------------------------------------------------------
+\subsection{Description}
+
+Notes are immutable objects.  For that reason, if you want to change
+some characteristics of a note in a cluster, you have to delete the
+note from the cluster and create one with the characteristics you
+would like. 
+
+%-------------------------------------------------------------------
+\subsection{Protocol classes and functions}
+
+\Defclass{note}
+
+The protocol class for notes. 
+
+\Defun {make-note} (pitch staff \rest args \key head accidentals dots)
+
+Create a note as indicated.  The pitch represents the pitch of the
+note without any accidentals, and is an integer between 0 and 127,
+where 0 indicates a C in the lowest octave.  The staff is an instance
+of the class \lispobj{staff} and indicates what staff the note is to
+be displayed on.  
+
+The \lispobj{head} argument indicates what kind of notehead is wanted
+in the form of one of the keywords \lispobj{:whole}, \lispobj{:half},
+and \lispobj{:filled}, or nil, where nil means that the notehead is
+taken from the cluster to which the note belongs.
+
+The \lispobj{accidentals} argument indicates which, if any,
+accidentals the note should have, and is one of the keywords 
+\lispobj{:natural}, \lispobj{:flat}, \lispobj{:double-flat},
+\lispobj{:sharp}, or \lispobj{:double-sharp}.  The default value is
+\lispobj{:natural} meaning that this note does not have any
+accidentals. 
+
+The \lispobj{dots} argument indicates how many dots follow this note.
+It is an integer between 0 and 3 or nil, where nil means that the
+number of dots is taken  from the cluster to which the note belongs.
+
+%-------------------------------------------------------------------
+\subsection{External representation}
+
+A note is printed (by \lispobj{print-object}
+
+%===================================================================
+\section{The cluster protocol}
+
+%-------------------------------------------------------------------
+\subsection{Description}
+
+A cluster is roughly the same as a chord, in that it is a collection
+of notes that share a stem (unless the noteheads are whole noteheads,
+in which case there is no stem at all).
+
+%-------------------------------------------------------------------
+\subsection{Protocol classes and functions}
+
+\Defclass{cluster}
+
+\Defun {make-cluster} {\key (notehead :filled) (lbeams 0) (rbeams 0)
+		       (dots 0) (xoffset 0) notes (stem-direction :auto))}
+
+Create a cluster.
+
+The \lispobj{notehead} argument indicates the basic timing unit to be
+used for this cluster and is one of the keywords \lispobj{:whole},
+\lispobj{:half}, and \lispobj{:filled}.  A value of \lispobj{:whole}
+gives a \emph{basic duration} of $1$, a value of \lispobj{:half} gives $1
+\over 2$ and \lispobj{:filled} gives $1 \over 4$. 
+
+The \lispobj{lbeams} argument indicates by how many beams this cluster
+ties to the cluster immediately to its left.  It must be an integer
+between $0$ and $5$ inclusive. 
+
+The \lispobj{rbeams} argument indicates by how many beams this cluster
+ties to the cluster immediately to its right.  It must be an integer
+between $0$ and $5$ inclusive. 
+
+When the \lispobj{notehead} argument is \lispobj{:filled}, the
+\emph{basic duration} ($1 \over 4$) is divided by $2^n$ where $n$ is the max
+of the values of \lispobj{lbeams} and \lispobj{rbeams}, giving the
+\emph{beamed duration} of the cluster. 
+
+The \lispobj{dots} arguments indicates how many dots should follow
+notes of this cluster by default.  It must be an integer between $0$
+and $3$ inclusive.  The number of dots determines how the \emph{final
+duration} for the cluster is obtained from its \emph{beamed duration}.
+When the value is $0$, the final duration is the same as the beamed
+duration.  When the value is $1$, the final duration is the beamed
+duration multiplied by $3 \over 2$.  When the value is $2$, the final
+duration is the beamed duration multiplied by $7 \over 4$.  When the
+value is $3$, the final duration is the beamed duration multiplied by
+$15 \over 8$.
+
+The \lispobj{xoffset} arguments indicates by how much to the right of
+its nominal position this cluster should be displayed.  The unit is in
+\emph{staff-steps}. 
+
+The \lispobj{notes} argument is a list of initial notes for this
+cluster.
+
+The \lispobj{stem-direction} argument indicates the direction to be
+used for the stem of this cluster.  The value is one of the keywords
+\lispobj{:up}, \lispobj{:down} and \lispobj{:auto}, where
+\lispobj{:auto} means that the direction is determined by the layout
+algorithm.  The values \lispobj{:up} and \lispobj{:down} are typically
+used when two voices share a staff, and one voice has all the stems up
+and the other has all the stems down. 
+
+\Defun {make-rest} {staff \key (staff-pos 4) (notehead :filled) (lbeams 0) (rbeams 0)
+		    (dots 0) (xoffset 0)}
+
+\Defun {make-lyrics-element} {staff \key (notehead :filled) (lbeams 0) (rbeams 0)
+		    (dots 0) (xoffset 0)}
+
+%-------------------------------------------------------------------
+\subsection{External representation}
+
+
+%===================================================================
+\section{The bar protocol}
+
+%-------------------------------------------------------------------
+\subsection{Description}
+
+
+%-------------------------------------------------------------------
+\subsection{Protocol classes and functions}
+
+\Defclass{bar}
+
+\Defclass{melody-bar}
+
+\Defun {make-melody-bar} {\key elements}
+
+\Defclass{lyrics-bar}
+
+\Defun {make-lyrics-bar} {\key elements}
+
+%-------------------------------------------------------------------
+\subsection{External representation}
+
+
+%===================================================================
+\section{The slice protocol}
+
+%-------------------------------------------------------------------
+\subsection{Description}
+
+
+%-------------------------------------------------------------------
+\subsection{Protocol classes and functions}
+
+\Defclass{slice}
+
+\Defun {make-slice} {\key bars}
+
+%-------------------------------------------------------------------
+\subsection{External representation}
+
+

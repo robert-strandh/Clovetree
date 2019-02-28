@@ -1,0 +1,114 @@
+\documentclass[11pt]{book}
+\newcommand{\Comment}[1]{\begin{center}\tt #1 \end{center}}
+% \usepackage{doublespace}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage{alltt}
+\usepackage{moreverb}
+\usepackage{epsfig}
+\usepackage{makeidx}
+
+\setlength{\parskip}{0.3cm}
+\setlength{\parindent}{0cm}
+
+\def\lispout#1{\underline{#1}}
+\def\commonlisp{Common Lisp}
+\def\scheme{Scheme}
+\def\gs{Gsharp}
+\def\sysname{Clovetree}
+\def\midifile{Midifile}
+\def\midi{MIDI}
+\def\obseq{Obseq}
+\def\clos{CLOS}
+\def\clim{CLIM}
+\def\rs{Robert Strandh}
+\def\kerhoas{Laurent Kerhoas}
+\def\rms{Richard Stallman}
+\def\lisp{Lisp}
+\def\tcl{Tcl}
+\def\elk{Elk}
+\def\gnu{GNU}
+\def\guile{Guile}
+\def\scm{SCM}
+\def\xwin{the X Window System}
+\def\freetype{FreeType}
+\def\metafont{METAFONT}
+\def\bs{$\backslash$}
+\def\lispobj#1{\textsl{#1}}
+\def\lispobjindex#1{\lispobj{#1}\index{#1@\lispobj{#1}}}
+\def\syntax#1{\texttt{#1}}
+\def\metavar#1{\textit{#1}}
+\def\unimp#1{\footnote{This feature is not yet implemented.  #1}}
+
+\def\kbd#1{`#1'}
+\def\command#1{``#1''}
+
+\def\inputfig#1{\input #1}
+\def\inputtex#1{\input #1}
+
+\newenvironment{itemize0}{
+\begin{itemize}
+\setlength{\parskip}{0cm}%
+}
+{\end{itemize}}
+
+\newenvironment{enumerate0}{
+\begin{enumerate}
+\setlength{\parskip}{0cm}%
+}
+{\end{enumerate}}
+
+\newenvironment{smalltt}{
+\begin{alltt}
+\small
+}
+{\end{alltt}}
+
+\inputtex{spec-macros.tex}
+
+\title{{\Huge {\sysname}}\\{\huge The Extensible, Interactive Score Editor}}
+
+\author{{\Large Robert Strandh}}
+
+\date{February 2019}
+
+\makeindex
+\begin{document}
+\pagenumbering{roman}
+
+\maketitle
+
+\newpage
+
+\vspace*{\fill}
+\copyright{} 2019, Robert Strandh
+
+I intend to distribute this document according to some kind of free
+license, such as the GNU Free Documentation License, but I have not
+had the time to figure out how it works yet. 
+
+\newpage
+
+{\setlength{\parskip}{0cm}
+\tableofcontents}
+
+\inputtex{intro.tex}
+
+\inputtex{part-getting-started.tex}
+\inputtex{part-reference-manual.tex}
+\inputtex{part-internals.tex}
+\inputtex{part-appendices.tex}
+
+\nocite{ross-1987} \nocite{haken-1993} \nocite{haken-1995}
+\nocite{aho-hopcroft-ullman} \nocite{blostein-1991}
+\nocite{blostein-1994} \nocite{gourlay-1987-spacing}
+\nocite{gourlay-1987-formatting} \nocite{hegazy-1987}
+\nocite{hegazy-1987-breaking} \nocite{rader-1996} \nocite{tex}
+
+
+\printindex
+
+\newpage
+\bibliographystyle{alpha}
+\bibliography{clovetree}
+\end{document}
