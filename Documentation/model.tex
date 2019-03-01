@@ -10,7 +10,7 @@ supposed to think about the structure of the score being created.
 
 The basic abstraction of \sysname{} is that of a \emph{composition}
 \index{composition}.  The composition is the in-memory representation
-of an entire piece of musical.  \sysname{} can have several
+of an entire piece of music.  \sysname{} can have several
 compositions simultaneously in memory.
 
 Loading a \sysname{} file into the editor creates a new composition,
@@ -45,34 +45,26 @@ poses no problem, because it is possible to organize \sysname{} layers
 so that their musical material does not overlap in time, even though
 layers conceptually do.
 
-\section{Slice}
+\section{Views}
 
-Each layer has exactly three parts, referred to as \emph{slices}
-\index{slice}, the \emph{head slice}\index{head slice}
-\index{slice!head|)}, the \emph{body slice}\index{body slice}
-\index{slice!body|)}, and the \emph{tail slice}\index{tail slice}
-\index{slice!tail|)}. \unimp{We only use the body slice at the moment,
-  which of course is the most important one.  However, the head slice
-  is important for [and I do not know what this is called in English]
-  the few notes that might logically belong to a phrase, but that
-  temporally precedes it.  I have no idea, though, what the tail slice
-  might be useful for. --RS 2003-08-16}
+A layers of a composition contain the complete musical material of en
+entire piece of music, but they do not contain any information on how
+this material is to be presented to the user.  Instead this
+information is contained in one or more \texttt{views} that are part
+of the composition.
 
 \section{Element}
 
-Each slice is a sequence of \emph{elements}\index{element}.  There are
+Each layer is a sequence of \emph{elements}\index{element}.  There are
 different kinds of element, \emph{clusters}\index{cluster},
 \emph{silences}\index{silence}, and \emph{barlines}\index{barline}.
 For the remainder of this section, we ignore the possibility of
 an element being a barline, since a barline does not have any
 interesting properties such as duration.
 
-In the body slice, the first element starts at time zero from the
+In the layer, the first element starts at time zero from the
 beginning of the slice, and each subsequent element starts when the
-preceding one ends.  The same thing is true for the tail
-slice. \unimp{We do not yet have a tail slice} The head slice is
-different, in that it is aligned from the \emph{end of the preceding
-slice}.  \unimp{We do not yet have a head slice}.
+preceding one ends. 
 
 Each element (except the barline) has a particular \emph{duration}
 \index{duration}.  The duration is indicated by a \emph{notehead}
@@ -80,7 +72,6 @@ Each element (except the barline) has a particular \emph{duration}
 \index{dots!number of|)} Notice that the notehead property exists even
 if the element is a silence.  It is used to indicate what kind of
 character to use for the silence.
-
 
 \section{Cluster}
 
