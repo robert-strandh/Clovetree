@@ -1,0 +1,223 @@
+* General
+
+  An invocation of Clovetree can contain an arbitrary number of SONGs.
+  There is always at least one song.  If Clovetree is started without
+  giving any songs as arguments, or if the last song is deleted, then
+  a default song (see below) is created.
+
+* Song
+
+  A song has some model information and some display information.
+
+** Model information
+     
+*** Administrative information
+
+**** Title
+**** Composer
+**** Lyrics author (optional)
+**** Publishing date
+**** etc
+
+*** A list of instruments
+*** A list of parts
+
+** Display information
+
+*** Text styles for title, composer lyrics, etc.
+*** A list of parts views.
+
+** Song edit mode
+
+   This mode is not going to be used very often, so it doesn't have to
+   be easy to use.
+
+*** Change administrative information
+
+    It is fine to require the user to type in new information, rather
+    than providing sophisticated editing gestures. 
+
+*** Add an instrument
+
+    Normally, there will already be a large number of instruments
+    provided, but in case one is missing, a new one can be added.
+    There is no reason to remove an instrument from a song.  Unused
+    instruments just won't appear in the parts views.
+
+*** Add a part
+
+    Add a default part.  It can then be configured using the part
+    configuration mode.
+
+*** Add a parts view
+
+    Add a default parts view.  It can then be configured using the parts
+    view configuration mode.
+
+*** Delete a parts view
+
+* Instrument
+
+** Name
+
+   The name of an instrument, such as "Piano" or "Trumpet"
+   There can be several instruments with the same name, but with
+   different keys.
+
+** Key
+   
+   Some instruments, when they play a key that is notated as a C will
+   produce a sound that is not a C.  For example, on a Bb ("b-flat")
+   trumpet, when the instrumentalist plays a note that looks like a C,
+   it will have the frequency of a Bb.  For such an instrument, the
+   way the notes are displayed must be altered to compensate for this
+   offset.  In the case of a Bb trumpet, its staff would have to have
+   a key of D major in order to sound right together with (say) a
+   piano that plays in C major.
+
+* Part
+
+   A part contains the music material for a single voice of a single
+   instrument.  Several different parts can be played by the same type
+   of instrument, so several parts may refer to a single instrument.
+
+   For instruments such as piano or organ, each hand/foot can be a
+   separate part.
+
+** Name
+
+   For example "First violin" or "Organ pedal".
+
+** Instrument
+
+   A reference to an instrument.
+
+** Staff names
+
+   Some parts, like "Piano left hand" have a wide range, and they may
+   need more than one staff for their presentation.  In such a case, a
+   music symbol such as a note to be displayed for this part has a
+   staff name associated with it.
+
+   For example, "Piano left hand" may have some notes labeled "Treble"
+   and some notes labeled "Bass" to indicate what staff they are
+   displayed on.
+
+   A staff name is probably a standard object with a string in it.
+
+** Part configuration mode
+
+   Provide some way of modifying the information about a part, while
+   keeping the music material.
+
+* Staff type
+
+** Five-line staff
+
+** Percussion staff.
+
+* Staff (or stave)
+
+** Staff type
+
+** Name
+
+* Parts view
+
+  A parts view is used in order to display all or a subset of of the
+  parts of a song, in a way that can be configured.
+
+** Parts
+
+   A list of parts that are displayed in this view
+
+** Staves
+
+  A parts view has a list of staves.  The name of each staff is
+  displayed in the left margin.
+
+** Selected part
+
+  At any point in time, only one part is selected for editing.
+
+  For information: Notes can only be entered on the staves
+  allowed by the selected part.
+
+** Mapping
+
+  The parts view contains a mapping from each staff name of each part
+  to one of the staves in the view.
+
+** Modes
+
+   A parts view can have three different modes with different
+   information shown to the user.
+
+*** Preview mode
+
+   In this mode, no editing is possible.  The display is shown in a
+   way close to the printed output.  I imagine there will be some
+   discreet buttons to select one of the other modes.
+
+*** Edit mode
+
+   In this mode, the layout of the notes is the same as in preview
+   mode, but additional information is displayed.  In particular, the
+   selected part is shown, and the staves allowed for entering music
+   material are shown in black whereas the staves that are not allowed
+   are shown in gray.
+
+   Edit mode will provide gestures for entering and deleting music
+   material, and that's my responsibility.
+
+   However, edit mode also provides buttons (or similar, labeled with
+   the name of the part) for changing which part is selected, and some
+   feedback showing what part is selected.
+
+   There is also some buttons or similar for selecting one of the
+   other modes.
+
+*** Configuration mode
+
+   Several configuration settings can be modified.  This mode is not
+   going to be used very often, so the interface does not have to be
+   very sophisticated or easy to use
+
+**** Add a part
+
+   A list of available parts is shown and the user can select one.
+
+**** Delete a part
+
+   Delete one of the existing parts.
+
+**** Add a staff
+
+   Add a staff of a particular type.
+
+**** Change the staff order
+
+   Change the order in which staves are displayed.
+
+   This operation does not have to be very sophisticated.  One can for
+   example have an UP button for all staves except the first one, and
+   a DOWN button for all staves except the last one, that will move
+   the current staff one position in that direction.
+
+**** Edit the name of a staff.
+
+**** Change the mapping
+
+* Application menus
+
+   One possibility is to have some of the menus vary according to the
+   view.
+
+** File
+
+   I hate that kind of name, but I guess one is needed, for reading a
+   new song, writing a song, printing a song, etc.
+
+** Song
+
+   Select a song among the existing ones.
