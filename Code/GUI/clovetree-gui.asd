@@ -5,4 +5,5 @@
   :serial t
   :components
   ((:file "packages")
-   (:file "gui")))
+   (:file "gui")
+   (:file "commands")))
