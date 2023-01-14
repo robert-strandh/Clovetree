@@ -4,14 +4,14 @@
   ()
   (:panes
    (score :application
-          :width 1000 :height 1000
+          :scroll-bars nil
           :display-time nil)
    (interactor :interactor
-               :width 1000 :height 100))
+               :scroll-bars nil))
   (:layouts
    (default (clim:vertically ()
-              (clim:scrolling (:width 1000 :height 1000)
-                score)
+              (:fill (clim:scrolling (:width 1000 :height 1000)
+                       score))
               (clim:scrolling (:width 1000 :height 100)
                 interactor)))))
 
