@@ -1,7 +1,18 @@
 (cl:in-package #:clovetree-gui)
 
+(clim:make-command-table
+ 'file-command-table
+ :errorp nil
+ :menu '(("Quit" :command com-quit)))
+
+(clim:make-command-table
+ 'menu-bar-command-table
+ :errorp nil
+ :menu '(("File" :menu file-command-table)))
+
 (clim:define-application-frame clovetree ()
   ()
+  (:menu-bar menu-bar-command-table)
   (:panes
    (score :application
           :scroll-bars nil
