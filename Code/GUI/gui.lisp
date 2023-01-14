@@ -3,7 +3,8 @@
 (clim:make-command-table
  'file-command-table
  :errorp nil
- :menu '(("Quit" :command com-quit)))
+ :menu '(("Load score file" :command com-load-score-file)
+         ("Quit" :command com-quit)))
 
 (clim:make-command-table
  'menu-bar-command-table
