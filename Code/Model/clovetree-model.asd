@@ -3,4 +3,5 @@
 (defsystem #:clovetree-model
   :serial t
   :components
-  ((:file "packages")))
+  ((:file "packages")
+   (:file "score")))
