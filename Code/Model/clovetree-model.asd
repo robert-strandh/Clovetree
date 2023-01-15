@@ -4,4 +4,6 @@
   :serial t
   :components
   ((:file "packages")
-   (:file "score")))
+   (:file "score")
+   (:file "part")
+   (:file "measure-separator")))
