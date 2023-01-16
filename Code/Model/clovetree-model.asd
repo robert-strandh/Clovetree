@@ -9,4 +9,5 @@
    (:file "key-signature")
    (:file "time-signature")
    (:file "clef")
+   (:file "temporal-element")
    (:file "part")))
