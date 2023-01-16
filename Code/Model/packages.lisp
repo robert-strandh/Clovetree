@@ -2,4 +2,5 @@
 
 (defpackage #:clovetree-model
   (:use #:common-lisp)
+  (:shadow #:position)
   (:export))
