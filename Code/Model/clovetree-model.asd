@@ -10,4 +10,5 @@
    (:file "time-signature")
    (:file "clef")
    (:file "temporal-element")
+   (:file "cluster")
    (:file "part")))
