@@ -25,3 +25,15 @@
    (%position
     :initarg :position
     :accessor position)))
+
+(defclass g-clef (clef)
+  ()
+  (:default-initargs :position -2))
+
+(defclass f-clef (clef)
+  ()
+  (:default-initargs :position 2))
+
+(defclass c-clef (clef)
+  ()
+  (:default-initargs :position 0))
