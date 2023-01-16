@@ -8,4 +8,5 @@
    (:file "measure-separator")
    (:file "key-signature")
    (:file "time-signature")
+   (:file "clef")
    (:file "part")))
