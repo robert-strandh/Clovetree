@@ -6,5 +6,6 @@
 
 (defclass part ()
   ((%elements
-    :initform '()
+    :initform (list (make-instance 'measure-separator
+                      :strengh most-positive-fixnum))
     :accessor elements)))
