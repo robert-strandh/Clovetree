@@ -5,5 +5,6 @@
   :components
   ((:file "packages")
    (:file "score")
-   (:file "part")
-   (:file "measure-separator")))
+   (:file "measure-separator")
+   (:file "key-signature")
+   (:file "part")))
