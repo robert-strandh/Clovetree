@@ -1,5 +1,7 @@
 (cl:in-package #:clovetree-model)
 
+;;; A part can have one staff or several staves, then usually two.
+
 (defgeneric staves (part))
 
 (defgeneric (setf staves) (new-staves part))
