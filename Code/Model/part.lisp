@@ -1,11 +1,18 @@
 (cl:in-package #:clovetree-model)
 
+(defgeneric staves (part))
+
+(defgeneric (setf staves) (new-staves part))
+
 (defgeneric elements (part))
 
 (defgeneric (setf elements) (new-elements part))
 
 (defclass part ()
-  ((%elements
+  ((%staves
+    :initarg :staves
+    :accessor staves)
+   (%elements
     :initform (list (make-instance 'measure-separator
                       :strengh most-positive-fixnum))
     :accessor elements)))
