@@ -7,7 +7,9 @@
 ;;;; in the part it is located.  However, an instance of NOTE will
 ;;;; contain a reference to a particular kind of notehead, but the
 ;;;; notehead class is not part of the model, and instead part of the
-;;;; meta model.
+;;;; meta model.  Instances of classes belonging to the model will be
+;;;; saved in score files, but instances of classes belonging to the
+;;;; meta model will be an intrinsic part of the Clovetree system.
 
 (defsystem #:clovetree-model
   :serial t
