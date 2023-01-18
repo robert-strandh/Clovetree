@@ -3,12 +3,12 @@
 ;;; A cluster represents a collection of notes plus annotations such
 ;;; as articulations that are common for all notes in a cluster.
 
-(defgeneric notes (cluster))
+(defgeneric noteheads (cluster))
 
-(defgeneric (setf notes) (new-notes cluster))
+(defgeneric (setf noteheads) (new-noteheads cluster))
 
 (defclass cluster (temporal-element)
-  ((%notes
+  ((%noteheads
     :initform '()
-    :initarg :notes
-    :accessor notes)))
+    :initarg :noteheads
+    :accessor noteheads)))
