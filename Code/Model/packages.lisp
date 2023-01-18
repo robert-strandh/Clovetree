@@ -2,7 +2,7 @@
 
 (defpackage #:clovetree-model
   (:use #:common-lisp)
-  (:shadow #:position)
+  (:shadow #:position #:rest)
   (:export
    #:score #:parts #:title
    #:measure-separator #:strength
