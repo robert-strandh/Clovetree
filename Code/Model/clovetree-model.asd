@@ -21,5 +21,6 @@
    (:file "time-signature")
    (:file "clef")
    (:file "temporal-element")
+   (:file "rest")
    (:file "cluster")
    (:file "part")))
