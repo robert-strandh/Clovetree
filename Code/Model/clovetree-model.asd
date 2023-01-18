@@ -26,4 +26,5 @@
    (:file "cluster")
    (:file "part")
    (:file "notehead")
-   (:file "accidental")))
+   (:file "accidental")
+   (:file "beam")))
