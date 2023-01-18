@@ -19,7 +19,9 @@
     :accessor noteheads)
    ;; This slot contains a list of instances of the class BEAM.  The
    ;; beams in the list are ordered from the one furthest from the
-   ;; noteheads to the one closest to the noteheads.
+   ;; noteheads to the one closest to the noteheads.  If the list is
+   ;; empty, but the duration of the cluster requires beams or flags,
+   ;; then the number of flags required is computed automatically.
    (%beams
     :initform '()
     :initarg :beams
