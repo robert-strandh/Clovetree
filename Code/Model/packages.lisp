@@ -17,4 +17,8 @@
    #:size
    #:temporal-element #:duration
    #:cluster #:noteheads
-   #:part #:elements))
+   #:part #:elements
+   #:notehead
+   #:whole-notehead
+   #:half-notehead
+   #:filled-notehead))
