@@ -21,4 +21,5 @@
    #:notehead
    #:whole-notehead
    #:half-notehead
-   #:filled-notehead))
+   #:filled-notehead
+   #:accidental))
