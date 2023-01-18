@@ -22,4 +22,5 @@
    #:whole-notehead
    #:half-notehead
    #:filled-notehead
-   #:accidental))
+   #:accidental
+   #:sharp #:flat #:neutral #:double-sharp #:double-flat))
