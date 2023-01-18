@@ -25,4 +25,5 @@
    (:file "rest")
    (:file "cluster")
    (:file "part")
-   (:file "notehead")))
+   (:file "notehead")
+   (:file "accidental")))
