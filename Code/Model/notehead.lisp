@@ -1,4 +1,4 @@
-(cl:in-package #:cluster-model)
+(cl:in-package #:clovetree-model)
 
 ;;; The accidental of a notehead can be NIL or an instance of the class
 ;;; ACCIDENTAL.
