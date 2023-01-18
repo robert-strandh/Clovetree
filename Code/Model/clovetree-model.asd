@@ -24,4 +24,5 @@
    (:file "temporal-element")
    (:file "rest")
    (:file "cluster")
-   (:file "part")))
+   (:file "part")
+   (:file "notehead")))
