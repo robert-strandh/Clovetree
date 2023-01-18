@@ -12,8 +12,9 @@
    #:common-time-signature
    #:cut-common-time-signature
    #:beat-count #:beat-type
+   #:positional-element #:position #:staff-number
    #:clef #:g-clef #:f-clef #:c-clef
-   #:size #:position
+   #:size
    #:temporal-element #:duration
-   #:cluster #:notes
+   #:cluster #:noteheads
    #:part #:elements))
