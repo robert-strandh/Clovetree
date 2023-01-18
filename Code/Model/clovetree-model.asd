@@ -19,6 +19,7 @@
    (:file "measure-separator")
    (:file "key-signature")
    (:file "time-signature")
+   (:file "positional-element")
    (:file "clef")
    (:file "temporal-element")
    (:file "rest")
