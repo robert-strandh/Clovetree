@@ -23,4 +23,5 @@
    #:half-notehead
    #:filled-notehead
    #:accidental
-   #:sharp #:flat #:neutral #:double-sharp #:double-flat))
+   #:sharp #:flat #:neutral #:double-sharp #:double-flat
+   #:beam #:clusters))
