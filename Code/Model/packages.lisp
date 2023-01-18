@@ -16,7 +16,7 @@
    #:clef #:g-clef #:f-clef #:c-clef
    #:size
    #:temporal-element #:duration
-   #:cluster #:noteheads
+   #:cluster #:noteheads #:beams
    #:part #:elements
    #:notehead
    #:whole-notehead
