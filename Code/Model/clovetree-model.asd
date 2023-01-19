@@ -27,4 +27,5 @@
    (:file "part")
    (:file "notehead")
    (:file "accidental")
-   (:file "beam")))
+   (:file "beam")
+   (:file "staff")))
