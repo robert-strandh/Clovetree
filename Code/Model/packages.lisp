@@ -24,4 +24,5 @@
    #:filled-notehead
    #:accidental
    #:sharp #:flat #:neutral #:double-sharp #:double-flat
-   #:beam #:clusters))
+   #:beam #:clusters
+   #:staff #:five-line-staff))
