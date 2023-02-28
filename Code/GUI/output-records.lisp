@@ -36,3 +36,6 @@
 
 (defclass system-record (compound-record)
   ())
+
+(defclass page-record (compound-record)
+  ())
