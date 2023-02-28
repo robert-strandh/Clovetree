@@ -34,7 +34,7 @@
     (unless (null stream)
       (load stream)))
   (let ((frame (clim:make-application-frame
-                'clovetree)))
+                   'clovetree)))
     (flet ((run () (clim:run-frame-top-level frame)))
       (if new-process
           (clim-sys:make-process #'run :name process-name)
